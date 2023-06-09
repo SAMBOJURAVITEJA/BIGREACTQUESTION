@@ -1,10 +1,11 @@
-import {Redirect, Route} from 'react-router-dom'
-import Cookie from 'js-cookie'
+import {Route} from 'react-router-dom'
+import Cookies from 'js-cookie'
+import Home from '../Home'
 
 const ProtectedRoute = props => {
-  const token = Cookie.get('jwt_token')
+  const token = Cookies.get('jwt_token')
   if (token === undefined) {
-    return <Redirect to="/login" />
+    return <Route path="/" component={Home} />
   }
   return <Route {...props} />
 }
